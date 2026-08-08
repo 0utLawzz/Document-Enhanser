@@ -1,0 +1,1276 @@
+Build a production-quality mobile-first document photo enhancement application.
+
+IMPORTANT:
+This application is NOT an AI image generator.
+It must enhance the existing uploaded document/photo while preserving the original text, numbers, names, signatures, stamps, seals, logos and document structure.
+
+The primary use case is photographed/scanned legal, government, trademark, court, business and official documents that are captured with poor lighting, dull exposure, grey background, shadows, slight perspective distortion or low contrast and need to be printed clearly.
+
+The application should feel like a polished Android/iOS mobile app, even if implemented as a responsive web/PWA application.
+
+==================================================
+1. APP NAME
+==================================================
+
+Use a professional temporary name:
+
+"DocBright"
+
+Subtitle:
+
+"Document Photo Enhancer"
+
+The branding should be clean, professional and document-focused.
+
+Do NOT make it look like a generic photo editor.
+
+==================================================
+2. CORE OBJECTIVE
+==================================================
+
+The user should be able to:
+
+1. Upload one document image.
+2. Upload multiple document images in bulk.
+3. Automatically enhance them.
+4. Compare original vs enhanced.
+5. Manually adjust enhancement settings if required.
+6. Export individual images.
+7. Export all processed images together.
+8. Keep original files untouched.
+9. Process documents without changing their actual content.
+
+The main goal is:
+
+DULL DOCUMENT PHOTO
+        ↓
+AUTO DOCUMENT ENHANCEMENT
+        ↓
+CLEAN + BRIGHT + READABLE DOCUMENT
+        ↓
+PRINT READY OUTPUT
+
+==================================================
+3. VERY IMPORTANT DOCUMENT SAFETY RULE
+==================================================
+
+This application is intended for official and legal documents.
+
+Therefore:
+
+DO NOT use generative AI to redraw, rewrite, recreate or hallucinate document content.
+
+DO NOT replace text.
+
+DO NOT OCR-reconstruct the document.
+
+DO NOT invent missing characters.
+
+DO NOT alter names, dates, registration numbers, signatures, stamps, seals, logos or legal wording.
+
+Image enhancement must operate on the existing pixels.
+
+The application should prioritize image-processing techniques such as:
+
+- brightness correction
+- contrast enhancement
+- exposure correction
+- white balance
+- shadow reduction
+- highlight recovery
+- denoising
+- sharpening
+- grayscale conversion
+- adaptive thresholding
+- background whitening
+- perspective correction
+- deskew
+- document cropping
+
+AI enhancement, if added later, must NEVER regenerate document content.
+
+==================================================
+4. MOBILE-FIRST UI
+==================================================
+
+Design the application primarily for mobile screens.
+
+It should work beautifully on:
+
+- Android phones
+- iPhones
+- tablets
+- desktop browsers
+
+Use a modern clean interface.
+
+Design language:
+
+- professional
+- minimal
+- document utility
+- clean white/light background
+- subtle blue accent
+- rounded cards
+- large touch targets
+- clear typography
+- simple icons
+- no unnecessary decoration
+
+Avoid:
+
+- flashy gradients
+- gaming-style UI
+- excessive animations
+- complicated menus
+
+The interface should feel like a serious document utility.
+
+==================================================
+5. HOME SCREEN
+==================================================
+
+Create a dashboard/home screen containing:
+
+Header:
+
+DocBright
+Document Photo Enhancer
+
+Main large action:
+
+[ + Add Documents ]
+
+Below it:
+
+[ Take Photo ]
+
+[ Choose from Gallery ]
+
+[ Choose Multiple ]
+
+Then show:
+
+Recent Documents
+
+Example cards:
+
+Document_001
+Enhanced 2 minutes ago
+
+Document_002
+Enhanced yesterday
+
+Also show statistics:
+
+Documents Processed
+Today: 24
+
+Total: 1,284
+
+==================================================
+6. BULK PROCESSING
+==================================================
+
+Bulk processing is one of the most important features.
+
+The user should be able to select:
+
+- 1 image
+- 5 images
+- 20 images
+- 50 images
+- 100+ images
+
+depending on device/browser limitations.
+
+After selecting multiple files, display a batch queue.
+
+Example:
+
+--------------------------------
+BATCH QUEUE
+
+12 Documents
+
+[Thumbnail] Certificate_001.jpg
+Status: Waiting
+
+[Thumbnail] Certificate_002.jpg
+Status: Processing
+
+[Thumbnail] Certificate_003.jpg
+Status: Completed
+
+--------------------------------
+
+Progress:
+
+8 / 12 completed
+
+[ Pause ]
+[ Cancel ]
+
+Do NOT freeze the UI while processing.
+
+Use asynchronous/background processing where practical.
+
+Each document should have its own processing status:
+
+Waiting
+Processing
+Completed
+Failed
+
+If one image fails, continue processing the remaining images.
+
+==================================================
+7. AUTO ENHANCE
+==================================================
+
+Provide a primary button:
+
+[ AUTO ENHANCE ]
+
+The automatic enhancement algorithm should intelligently improve:
+
+- brightness
+- contrast
+- exposure
+- shadows
+- white background
+- text clarity
+- mild noise
+- sharpness
+
+The default enhancement must be conservative.
+
+Do not over-process documents.
+
+For example:
+
+Original:
+grey/dull paper
+
+Output:
+cleaner white paper
+clearer black text
+preserved colored headings
+preserved blue/red/green stamps
+preserved signatures
+
+Do NOT make every document pure black and white by default.
+
+Preserve original colors unless the user selects a monochrome preset.
+
+==================================================
+8. ENHANCEMENT PRESETS
+==================================================
+
+Create these presets:
+
+A. Natural
+
+Purpose:
+Light correction while preserving the original appearance.
+
+B. Document Clear
+
+Purpose:
+Improve text visibility and background clarity.
+
+C. Print Ready
+
+Purpose:
+Optimize for printing.
+
+C should be the default recommended preset.
+
+D. Black & White
+
+Purpose:
+Convert document into clean monochrome format.
+
+E. Strong Text
+
+Purpose:
+Increase text contrast for extremely dull documents.
+
+F. Photo Recovery
+
+Purpose:
+For documents photographed under poor lighting.
+
+Each preset should have a short explanation.
+
+==================================================
+9. MANUAL CONTROLS
+==================================================
+
+Create an Advanced Adjustments panel.
+
+Controls:
+
+Brightness
+Range: -100 to +100
+
+Contrast
+Range: -100 to +100
+
+Exposure
+Range: -100 to +100
+
+Highlights
+Range: -100 to +100
+
+Shadows
+Range: -100 to +100
+
+Sharpness
+Range: 0 to 100
+
+Denoise
+Range: 0 to 100
+
+Saturation
+Range: -100 to +100
+
+White Background
+Range: 0 to 100
+
+Text Contrast
+Range: 0 to 100
+
+Use sliders optimized for mobile touch.
+
+Include:
+
+[ Reset ]
+
+[ Apply ]
+
+Changes should preview immediately.
+
+==================================================
+10. BEFORE / AFTER COMPARISON
+==================================================
+
+This is a critical feature.
+
+Create an interactive Before/After comparison viewer.
+
+The user can drag a vertical divider.
+
+LEFT:
+Original
+
+RIGHT:
+Enhanced
+
+Example:
+
+              ← drag →
+--------------------------------
+| ORIGINAL | ENHANCED |
+--------------------------------
+
+Also provide:
+
+[ Original ]
+[ Enhanced ]
+[ Split View ]
+
+Make sure the comparison works smoothly on mobile.
+
+==================================================
+11. DOCUMENT DETECTION
+==================================================
+
+Add automatic document boundary detection.
+
+When a photographed document contains surrounding desk/background:
+
+Detect the paper/document edges.
+
+Automatically:
+
+- crop
+- straighten
+- perspective correct
+- rotate
+- deskew
+
+However:
+
+DO NOT force cropping if detection confidence is low.
+
+If detection is uncertain:
+
+Show:
+
+"Document edges could not be detected confidently."
+
+Then allow the user to manually crop.
+
+==================================================
+12. PERSPECTIVE CORRECTION
+==================================================
+
+Implement perspective correction for photos taken at an angle.
+
+Example:
+
+Original:
+
+      ________
+    /        /
+   /        /
+  /________/
+
+Corrected:
+
+  __________
+ |          |
+ |          |
+ |__________|
+
+Allow manual corner adjustment if automatic detection is inaccurate.
+
+==================================================
+13. ROTATION
+==================================================
+
+Provide:
+
+Rotate Left
+Rotate Right
+Auto Rotate
+
+Support:
+
+0°
+90°
+180°
+270°
+
+==================================================
+14. IMAGE QUALITY
+==================================================
+
+Do not unnecessarily reduce resolution.
+
+Preserve as much original resolution as possible.
+
+Output options:
+
+JPG
+PNG
+
+Quality selector:
+
+Low
+Medium
+High
+Maximum
+
+Default:
+
+High
+
+For print output, provide:
+
+"Print Quality"
+
+which should preserve high resolution.
+
+==================================================
+15. EXPORT
+==================================================
+
+For a single document:
+
+[ Download ]
+
+[ Save to Device ]
+
+For multiple documents:
+
+[ Export All ]
+
+Prefer generating a ZIP file containing all enhanced documents.
+
+Example:
+
+DocBright_Export_2026-08-07.zip
+
+Inside:
+
+001_Certificate.jpg
+002_Certificate.jpg
+003_Certificate.jpg
+...
+
+Do not overwrite original files.
+
+==================================================
+16. FILE NAMING
+==================================================
+
+Automatically generate clean filenames.
+
+Example:
+
+Original:
+
+WhatsApp Image 2026-08-06 at 10.47.55 PM.jpeg
+
+Output:
+
+WhatsApp_Image_2026-08-06_10-47-55_PM_ENHANCED.jpg
+
+For bulk processing, preserve original names and append:
+
+_ENHANCED
+
+Example:
+
+certificate001_ENHANCED.jpg
+
+==================================================
+17. ORIGINAL FILE PROTECTION
+==================================================
+
+NEVER overwrite the original image.
+
+Always create a separate enhanced copy.
+
+Show:
+
+Original file
+Enhanced file
+
+The original must remain untouched.
+
+==================================================
+18. PROCESSING QUALITY
+==================================================
+
+The processing pipeline should roughly follow:
+
+INPUT
+↓
+Read image
+↓
+Orientation correction
+↓
+Document detection
+↓
+Perspective correction
+↓
+White balance
+↓
+Exposure correction
+↓
+Shadow reduction
+↓
+Contrast enhancement
+↓
+Background correction
+↓
+Denoising
+↓
+Text/detail enhancement
+↓
+Mild sharpening
+↓
+Output quality optimization
+↓
+EXPORT
+
+Use conservative processing.
+
+Avoid halos around text.
+
+Avoid excessive sharpening.
+
+Avoid artificial-looking paper.
+
+Avoid clipping black text.
+
+Avoid blowing out colored stamps and seals.
+
+==================================================
+19. PRINT READY MODE
+==================================================
+
+Create a dedicated:
+
+"Print Ready"
+
+mode.
+
+This should optimize the image for physical printing.
+
+Goals:
+
+- clean background
+- readable black text
+- preserved colored text
+- preserved signatures
+- preserved stamps
+- reduced shadows
+- reduced grey cast
+- improved contrast
+- sharp but natural text
+
+Do not automatically convert to black and white.
+
+==================================================
+20. BATCH PRESET
+==================================================
+
+When processing multiple documents, allow:
+
+Preset:
+[ Print Ready ▼ ]
+
+Then:
+
+[ Apply to All ]
+
+The user should also be able to override individual images.
+
+Example:
+
+Batch:
+50 documents
+
+Preset:
+Print Ready
+
+[ Apply to All ]
+
+Then each document can still be individually adjusted.
+
+==================================================
+21. FAILED IMAGE HANDLING
+==================================================
+
+If an image cannot be processed:
+
+Do not stop the batch.
+
+Show:
+
+Certificate_023.jpg
+Status: Failed
+
+Reason:
+"Unable to process image."
+
+Buttons:
+
+[ Retry ]
+
+[ Open ]
+
+[ Skip ]
+
+At the end:
+
+47 completed
+2 failed
+1 skipped
+
+==================================================
+22. STORAGE / PRIVACY
+==================================================
+
+Documents may contain sensitive legal information.
+
+Therefore:
+
+Prefer local/on-device processing whenever technically possible.
+
+Do not upload document images to an external AI service by default.
+
+Do not send documents to third-party image generation APIs.
+
+Do not store documents permanently on a server unless explicitly required.
+
+If server processing is technically required:
+
+- clearly explain it
+- use secure temporary storage
+- automatically delete temporary files
+- never use uploaded documents for training
+
+Add a small privacy message:
+
+"Your documents are processed locally whenever possible. Original files are never modified."
+
+==================================================
+23. OFFLINE / PWA SUPPORT
+==================================================
+
+Make the application installable as a PWA.
+
+Add:
+
+Add to Home Screen
+
+The interface should behave like a mobile app.
+
+Where possible, image enhancement should continue working without an internet connection after the application has loaded.
+
+==================================================
+24. PROCESSING HISTORY
+==================================================
+
+Create a History screen.
+
+Show:
+
+Today
+Yesterday
+Earlier
+
+Each item:
+
+Thumbnail
+Filename
+Date
+Preset
+Status
+
+Actions:
+
+Open
+Reprocess
+Delete History
+
+History should not automatically retain original document images indefinitely.
+
+Provide:
+
+[ Clear History ]
+
+==================================================
+25. SETTINGS
+==================================================
+
+Settings screen:
+
+Default Preset
+Default Output Format
+Default Quality
+Auto Crop
+Auto Rotate
+Auto Perspective
+Auto Enhance
+Save Processing History
+Dark Mode
+Language
+
+Also:
+
+About DocBright
+
+Privacy
+
+Version
+
+==================================================
+26. DARK MODE
+==================================================
+
+Support light and dark mode.
+
+However, document preview itself must always display the document naturally.
+
+==================================================
+27. DESKTOP SUPPORT
+==================================================
+
+Although the application is mobile-first, desktop users should have:
+
+Drag & Drop upload
+
+Example:
+
+--------------------------------------
+      DROP DOCUMENTS HERE
+
+        or
+
+      + ADD DOCUMENTS
+--------------------------------------
+
+Multiple files can be dropped simultaneously.
+
+==================================================
+28. RESPONSIVE LAYOUT
+==================================================
+
+Mobile:
+
+Bottom navigation:
+
+Home
+Documents
+History
+Settings
+
+Desktop:
+
+Sidebar navigation.
+
+==================================================
+29. MAIN MOBILE NAVIGATION
+==================================================
+
+Bottom navigation:
+
+🏠 Home
+
+📄 Documents
+
+⚙ Settings
+
+Keep the navigation simple.
+
+==================================================
+30. DOCUMENT EDITOR
+==================================================
+
+When user opens an image:
+
+Top:
+
+← Back
+Document Editor
+
+Main:
+Large document preview
+
+Bottom toolbar:
+
+Crop
+Rotate
+Perspective
+Enhance
+Adjust
+Compare
+Export
+
+The toolbar should be touch friendly.
+
+==================================================
+31. AUTO ENHANCE BUTTON
+==================================================
+
+Make this the most prominent action in the editor.
+
+Button:
+
+✨ Auto Enhance
+
+After processing show:
+
+"Enhanced"
+
+with before/after comparison.
+
+Allow:
+
+[ Undo ]
+
+[ Reapply ]
+
+==================================================
+32. PERFORMANCE
+==================================================
+
+The application must remain responsive during processing.
+
+Do not load 100 huge images into memory simultaneously.
+
+Use:
+
+- queue-based processing
+- lazy loading
+- thumbnails
+- memory management
+- asynchronous processing
+
+For large batches, process a controlled number of images at a time.
+
+Do not crash the browser because the user selected 100 large photos.
+
+==================================================
+33. TECHNOLOGY
+==================================================
+
+Choose a practical architecture suitable for Replit.
+
+Preferred:
+
+Frontend:
+React + TypeScript
+
+Styling:
+Tailwind CSS
+
+Image processing:
+Browser-side image processing using suitable libraries such as Canvas APIs and/or OpenCV.js where appropriate.
+
+Backend:
+Use only when needed.
+
+For ZIP export:
+Use a suitable JavaScript ZIP library.
+
+PWA:
+Service Worker + Web App Manifest.
+
+Do NOT add unnecessary backend infrastructure.
+
+The priority is reliable document processing.
+
+==================================================
+34. MOBILE CAMERA
+==================================================
+
+On supported mobile browsers provide:
+
+[ Take Photo ]
+
+Use the device camera where possible.
+
+After capture:
+
+Show preview.
+
+Then:
+
+[ Use Photo ]
+
+[ Retake ]
+
+==================================================
+35. EXAMPLE USE CASE
+==================================================
+
+A user receives a government/legal certificate photographed with:
+
+- grey paper
+- low brightness
+- shadows
+- slight camera angle
+- dull colors
+
+The user opens DocBright.
+
+Taps:
+
++ Add Documents
+
+Selects 20 images.
+
+Chooses:
+
+Print Ready
+
+Taps:
+
+Apply to All
+
+The application processes all 20.
+
+The user sees:
+
+20 / 20 Completed
+
+Then opens any document.
+
+They can compare:
+
+Original vs Enhanced.
+
+If satisfied:
+
+Export All
+
+The application generates:
+
+DocBright_Export.zip
+
+containing all enhanced documents.
+
+==================================================
+36. UI COPY
+==================================================
+
+Use simple English UI labels.
+
+Main:
+
+"Enhance Documents"
+
+"Add Documents"
+
+"Take Photo"
+
+"Choose from Gallery"
+
+"Auto Enhance"
+
+"Print Ready"
+
+"Compare"
+
+"Adjust"
+
+"Export"
+
+"Export All"
+
+"Processing..."
+
+"Completed"
+
+"Failed"
+
+"Retry"
+
+"Cancel"
+
+"Reset"
+
+==================================================
+37. ERROR MESSAGES
+==================================================
+
+Use human-friendly messages.
+
+Instead of:
+
+"Unhandled exception"
+
+show:
+
+"Something went wrong while processing this document."
+
+Instead of:
+
+"Invalid MIME"
+
+show:
+
+"This file format is not supported."
+
+Instead of:
+
+"Out of memory"
+
+show:
+
+"This batch is too large for the available memory. Try processing fewer documents at once."
+
+==================================================
+38. SUPPORTED FORMATS
+==================================================
+
+Input:
+
+JPG
+JPEG
+PNG
+WEBP
+
+Output:
+
+JPG
+PNG
+
+Optional future support:
+
+HEIC
+PDF
+
+Do NOT implement PDF unless it can be done reliably.
+
+==================================================
+39. DOCUMENT PREVIEW
+==================================================
+
+The preview should support:
+
+Pinch zoom
+Double tap zoom
+Pan
+Fit to screen
+Fit width
+
+On mobile, do not make the document tiny.
+
+==================================================
+40. QUALITY INDICATOR
+==================================================
+
+Before processing, optionally show:
+
+Image Resolution
+Width
+Height
+File Size
+
+After processing:
+
+Output Resolution
+Output Size
+Preset Used
+
+==================================================
+41. DEVELOPMENT APPROACH
+==================================================
+
+Build this in phases.
+
+PHASE 1:
+Create complete mobile UI and navigation.
+
+PHASE 2:
+Implement single-image upload and preview.
+
+PHASE 3:
+Implement actual enhancement pipeline.
+
+PHASE 4:
+Implement before/after comparison.
+
+PHASE 5:
+Implement crop, rotate and perspective correction.
+
+PHASE 6:
+Implement bulk processing queue.
+
+PHASE 7:
+Implement ZIP export.
+
+PHASE 8:
+Implement PWA functionality.
+
+PHASE 9:
+Performance optimization.
+
+PHASE 10:
+Testing.
+
+Do not create fake buttons that do nothing.
+
+Every visible primary feature should either work or clearly be marked as coming later.
+
+==================================================
+42. TESTING
+==================================================
+
+Test with:
+
+1. Bright document
+2. Very dull document
+3. Grey document
+4. Document with colored headings
+5. Document with blue stamp
+6. Document with signature
+7. Slightly rotated document
+8. Perspective photograph
+9. Shadow across page
+10. Multiple documents
+11. Large high-resolution image
+12. 50+ image batch
+
+IMPORTANT:
+
+Test that enhancement does NOT modify actual text content.
+
+Test that:
+
+Registration numbers remain unchanged.
+
+Dates remain unchanged.
+
+Names remain unchanged.
+
+Signatures remain unchanged.
+
+Stamps remain unchanged.
+
+Logos remain unchanged.
+
+==================================================
+43. DEMO / SAMPLE
+==================================================
+
+Use the uploaded sample document image as a visual reference for the type of document this application is designed to improve.
+
+The target problem is:
+
+A real photographed certificate may be dull and difficult to print.
+
+The application should improve its visibility while preserving the original document.
+
+Do NOT recreate the sample document.
+
+Do NOT generate a new certificate.
+
+Use the sample only to understand:
+
+- lighting problems
+- page perspective
+- dullness
+- text visibility
+- shadows
+- print-readiness requirements
+
+==================================================
+44. FINAL PRODUCT REQUIREMENT
+==================================================
+
+The final result should feel like a real mobile utility application, not a developer demo.
+
+Prioritize:
+
+1. Reliability
+2. Document fidelity
+3. Bulk processing
+4. Print quality
+5. Mobile usability
+6. Performance
+7. Privacy
+
+Do NOT prioritize flashy design over image-processing quality.
+
+Before declaring the project complete:
+
+- run the application
+- test upload
+- test single enhancement
+- test bulk enhancement
+- test before/after
+- test export
+- test mobile layout
+- test desktop layout
+- test failure handling
+- test large images
+- test multiple images
+- fix all runtime errors
+
+Then provide:
+
+1. Complete project
+2. How to run it
+3. How to build it
+4. How to install as PWA
+5. Known limitations
+6. List of implemented features

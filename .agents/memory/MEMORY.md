@@ -1,0 +1,1 @@
+- [PNPM firewall and maturity](pnpm-firewall.md) — blocked package tarballs may require a mature compatible version and a focused workspace install.
