@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
 import React from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, Switch, Text, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppHeader, SectionLabel } from '@/components/DocBrightUI';
 import { useColors } from '@/hooks/useColors';
@@ -10,9 +10,11 @@ export default function SettingsScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const { preferences, updatePreference } = usePreferences();
+  const { width } = useWindowDimensions();
+  const isDesktop = Platform.OS === 'web' && width >= 900;
   const topInset = Platform.OS === 'web' ? 67 : insets.top;
   return <View style={[styles.screen, { backgroundColor: colors.background }]}>
-    <ScrollView contentContainerStyle={[styles.content, { paddingTop: topInset + 16, paddingBottom: insets.bottom + 100 }]} showsVerticalScrollIndicator={false}>
+    <ScrollView contentContainerStyle={[styles.content, isDesktop && styles.contentDesktop, { paddingTop: topInset + 16, paddingBottom: insets.bottom + 100 }]} showsVerticalScrollIndicator={false}>
       <AppHeader eyebrow="Preferences" title="Settings" />
       <SectionLabel>Processing defaults</SectionLabel>
       <SettingRow icon="zap" title="Default preset" detail={preferences.defaultPreset} colors={colors} onPress={() => updatePreference('defaultPreset', preferences.defaultPreset === 'Print Ready' ? 'Document Clear' : 'Print Ready')} />
@@ -42,15 +44,16 @@ function ToggleRow({ icon, title, detail, value, onValueChange, colors }: { icon
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   content: { paddingHorizontal: 20 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, borderBottomWidth: 1 },
-  rowIcon: { width: 34, height: 34, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
+  contentDesktop: { width: '100%', maxWidth: 900, alignSelf: 'center', paddingHorizontal: 48 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, borderBottomWidth: 3 },
+  rowIcon: { width: 34, height: 34, borderRadius: 0, borderWidth: 2, borderColor: '#0C0C0C', alignItems: 'center', justifyContent: 'center' },
   rowCopy: { flex: 1, gap: 3 },
-  rowTitle: { fontSize: 14, fontWeight: '700' },
-  rowDetail: { fontSize: 11, lineHeight: 16 },
-  about: { flexDirection: 'row', gap: 12, borderRadius: 18, borderWidth: 1, padding: 16, marginTop: 26 },
-  aboutIcon: { width: 40, height: 40, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
+  rowTitle: { fontFamily: 'Arial Black', fontSize: 14, fontWeight: '900', textTransform: 'uppercase' },
+  rowDetail: { fontFamily: 'monospace', fontSize: 11, lineHeight: 16 },
+  about: { flexDirection: 'row', gap: 12, borderRadius: 6, borderWidth: 3, borderColor: '#0C0C0C', padding: 16, marginTop: 26, backgroundColor: '#FAF6EE' },
+  aboutIcon: { width: 40, height: 40, borderRadius: 0, borderWidth: 2, borderColor: '#0C0C0C', alignItems: 'center', justifyContent: 'center' },
   aboutCopy: { flex: 1, gap: 4 },
-  aboutTitle: { fontSize: 15, fontWeight: '700' },
+  aboutTitle: { fontFamily: 'Arial Black', fontSize: 15, fontWeight: '900', textTransform: 'uppercase' },
   aboutText: { fontSize: 12, lineHeight: 18 },
   version: { fontSize: 11, marginTop: 4 },
 });
