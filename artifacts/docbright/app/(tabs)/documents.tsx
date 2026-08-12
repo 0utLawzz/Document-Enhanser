@@ -2,7 +2,7 @@ import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Alert, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppHeader, DocumentCard, EmptyState, PresetChip, PrimaryButton, SectionLabel } from '@/components/DocBrightUI';
 import { useColors } from '@/hooks/useColors';
@@ -15,8 +15,6 @@ export default function DocumentsScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const { documents, addAssets, enhanceAll, shareAll } = useDocuments();
-  const { width } = useWindowDimensions();
-  const isDesktop = Platform.OS === 'web' && width >= 900;
   const [selectedPreset, setSelectedPreset] = useState<Preset>('Print Ready');
   const topInset = Platform.OS === 'web' ? 67 : insets.top;
   const processing = documents.filter((item) => item.status === 'processing').length;
@@ -33,7 +31,7 @@ export default function DocumentsScreen() {
   };
 
   return <View style={[styles.screen, { backgroundColor: colors.background }]}>
-    <ScrollView contentContainerStyle={[styles.content, isDesktop && styles.contentDesktop, { paddingTop: topInset + 16, paddingBottom: insets.bottom + 100 }]} showsVerticalScrollIndicator={false}>
+    <ScrollView contentContainerStyle={[styles.content, { paddingTop: topInset + 16, paddingBottom: insets.bottom + 100 }]} showsVerticalScrollIndicator={false}>
       <AppHeader eyebrow="Workspace" title="Documents" action="plus" onAction={chooseMore} />
       {documents.length ? <>
         <View style={[styles.batchCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
@@ -59,15 +57,14 @@ function QueueRow({ document, onPress }: { document: DocumentItem; onPress: () =
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   content: { paddingHorizontal: 20 },
-  contentDesktop: { width: '100%', maxWidth: 1220, alignSelf: 'center', paddingHorizontal: 48 },
-  batchCard: { borderRadius: 6, borderWidth: 3, padding: 20, marginBottom: 25, backgroundColor: '#FAF6EE' },
+  batchCard: { borderRadius: 22, borderWidth: 1, padding: 16, marginBottom: 25 },
   batchTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 15 },
-  batchTitle: { fontFamily: 'Arial Black', fontSize: 21, fontWeight: '900', marginBottom: 4, textTransform: 'uppercase' },
-  batchMeta: { fontFamily: 'monospace', fontSize: 11 },
-  batchIcon: { width: 42, height: 42, borderRadius: 0, borderWidth: 3, borderColor: '#0C0C0C', alignItems: 'center', justifyContent: 'center' },
-  progressTrack: { height: 9, borderWidth: 2, borderColor: '#0C0C0C', overflow: 'hidden', marginBottom: 20, backgroundColor: '#E8DFC7' },
-  progressFill: { height: '100%', backgroundColor: '#C94A00' },
+  batchTitle: { fontSize: 18, fontWeight: '700', marginBottom: 4 },
+  batchMeta: { fontSize: 12 },
+  batchIcon: { width: 42, height: 42, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  progressTrack: { height: 7, borderRadius: 4, overflow: 'hidden', marginBottom: 20 },
+  progressFill: { height: '100%', borderRadius: 4 },
   presetRow: { paddingBottom: 15 },
-  batchButton: { minHeight: 48, marginTop: 4 },
+  batchButton: { minHeight: 48 },
   addButton: { marginTop: 20 },
 });

@@ -1,7 +1,7 @@
 import { Feather } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, Image, Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Alert, Image, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DocumentItem, Preset, useDocuments } from '@/lib/documents';
 import { useColors } from '@/hooks/useColors';
@@ -15,8 +15,6 @@ export default function EditorScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { documents, enhanceDocument, rotateDocument, shareDocument } = useDocuments();
-  const { width } = useWindowDimensions();
-  const isDesktop = Platform.OS === 'web' && width >= 900;
   const document = documents.find((item) => item.id === id);
   const [view, setView] = useState<'original' | 'enhanced' | 'split'>('enhanced');
   const [preset, setPreset] = useState<Preset>(document?.preset ?? 'Print Ready');
@@ -30,7 +28,7 @@ export default function EditorScreen() {
   };
 
   return <View style={[styles.screen, { backgroundColor: colors.background }]}>
-    <ScrollView contentContainerStyle={[styles.content, isDesktop && styles.contentDesktop, { paddingTop: topInset + 8, paddingBottom: insets.bottom + 36 }]} showsVerticalScrollIndicator={false}>
+    <ScrollView contentContainerStyle={{ paddingTop: topInset + 8, paddingBottom: insets.bottom + 36 }} showsVerticalScrollIndicator={false}>
       <View style={styles.topBar}><Pressable onPress={() => router.back()} style={styles.backButton}><Feather name="arrow-left" size={21} color={colors.foreground} /></Pressable><View style={styles.topTitle}><Text style={[styles.eyebrow, { color: colors.primary }]}>Document Editor</Text><Text style={[styles.name, { color: colors.foreground }]} numberOfLines={1}>{document.name}</Text></View><Pressable onPress={() => shareDocument(document)} style={[styles.exportIcon, { backgroundColor: colors.primary }]}><Feather name="upload" size={18} color={colors.primaryForeground} /></Pressable></View>
       <View style={[styles.previewCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
         <View style={styles.previewHeader}><Text style={[styles.previewLabel, { color: colors.foreground }]}>{view === 'split' ? 'Original / Enhanced' : view === 'original' ? 'Original' : 'Enhanced'}</Text><StatusPill status={document.status} /></View>
@@ -63,36 +61,34 @@ function ToolButton({ icon, label, onPress }: { icon: keyof typeof Feather.glyph
 
 const styles = StyleSheet.create({
   screen: { flex: 1, paddingHorizontal: 20 },
-  content: { width: '100%' },
-  contentDesktop: { maxWidth: 1220, alignSelf: 'center', paddingHorizontal: 48 },
   missing: { flex: 1, textAlign: 'center', paddingTop: 100 },
   topBar: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 16 },
-  backButton: { width: 42, height: 42, borderWidth: 3, borderColor: '#0C0C0C', backgroundColor: '#FAF6EE', alignItems: 'center', justifyContent: 'center' },
+  backButton: { width: 42, height: 42, alignItems: 'center', justifyContent: 'center' },
   topTitle: { flex: 1, gap: 2 },
-  eyebrow: { fontFamily: 'monospace', fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1.1 },
-  name: { fontFamily: 'Arial Black', fontSize: 17, fontWeight: '900', textTransform: 'uppercase' },
-  exportIcon: { width: 42, height: 42, borderRadius: 6, borderWidth: 3, borderColor: '#0C0C0C', alignItems: 'center', justifyContent: 'center' },
-  previewCard: { borderRadius: 6, borderWidth: 3, padding: 12, marginBottom: 12, backgroundColor: '#FAF6EE' },
+  eyebrow: { fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1.1 },
+  name: { fontSize: 17, fontWeight: '700' },
+  exportIcon: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
+  previewCard: { borderRadius: 22, borderWidth: 1, padding: 12, marginBottom: 12 },
   previewHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 4, paddingBottom: 10 },
   previewLabel: { fontSize: 14, fontWeight: '700' },
-  preview: { height: 390, borderWidth: 3, borderColor: '#0C0C0C', borderRadius: 0, overflow: 'hidden', justifyContent: 'center' },
+  preview: { height: 390, borderRadius: 14, overflow: 'hidden', justifyContent: 'center' },
   documentImage: { width: '100%', height: '100%' },
   split: { flexDirection: 'row', width: '100%', height: '100%' },
   splitImage: { width: '50%', height: '100%', borderRightWidth: 1 },
-  viewBadge: { position: 'absolute', left: 10, bottom: 10, borderWidth: 2, borderColor: '#0C0C0C', borderRadius: 0, paddingHorizontal: 9, paddingVertical: 6 },
-  viewBadgeText: { fontFamily: 'monospace', fontSize: 10, fontWeight: '700', textTransform: 'uppercase' },
-  segment: { flexDirection: 'row', backgroundColor: '#E8DFC7', borderWidth: 2, borderColor: '#0C0C0C', borderRadius: 0, padding: 3, marginTop: 10 },
-  segmentButton: { flex: 1, alignItems: 'center', justifyContent: 'center', minHeight: 34, borderRadius: 0 },
-  segmentText: { fontFamily: 'monospace', fontSize: 11, fontWeight: '700', textTransform: 'uppercase' },
+  viewBadge: { position: 'absolute', left: 10, bottom: 10, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 6 },
+  viewBadgeText: { fontSize: 10, fontWeight: '700' },
+  segment: { flexDirection: 'row', backgroundColor: 'rgba(127,145,163,0.12)', borderRadius: 12, padding: 3, marginTop: 10 },
+  segmentButton: { flex: 1, alignItems: 'center', justifyContent: 'center', minHeight: 34, borderRadius: 9 },
+  segmentText: { fontSize: 11, fontWeight: '700' },
   review: { flexDirection: 'row', alignItems: 'center', gap: 8, marginVertical: 10 },
   reviewText: { flex: 1, fontSize: 12, lineHeight: 17 },
-  section: { fontFamily: 'monospace', fontSize: 14, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', marginTop: 13, marginBottom: 10 },
+  section: { fontSize: 16, fontWeight: '700', marginTop: 13, marginBottom: 10 },
   presetRow: { paddingBottom: 12 },
   autoButton: { marginTop: 4 },
   toolRow: { flexDirection: 'row', gap: 8, marginTop: 12 },
-  toolButton: { flex: 1, minHeight: 74, borderRadius: 0, borderWidth: 3, alignItems: 'center', justifyContent: 'center', gap: 7 },
-  toolLabel: { fontFamily: 'monospace', fontSize: 10, fontWeight: '600', textTransform: 'uppercase' },
-  infoCard: { flexDirection: 'row', gap: 9, padding: 13, borderWidth: 3, borderColor: '#0C0C0C', borderRadius: 0, marginTop: 18, backgroundColor: '#D4A800' },
+  toolButton: { flex: 1, minHeight: 74, borderRadius: 15, borderWidth: 1, alignItems: 'center', justifyContent: 'center', gap: 7 },
+  toolLabel: { fontSize: 10, fontWeight: '600' },
+  infoCard: { flexDirection: 'row', gap: 9, padding: 13, borderRadius: 15, marginTop: 18 },
   infoCopy: { flex: 1, gap: 3 },
   infoTitle: { fontSize: 12, fontWeight: '700' },
   infoText: { fontSize: 11, lineHeight: 17 },

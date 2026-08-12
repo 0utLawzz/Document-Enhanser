@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, StyleSheet, useColorScheme, useWindowDimensions, View } from 'react-native';
+import { Platform, StyleSheet, useColorScheme, View } from 'react-native';
 import { useColors } from '@/hooks/useColors';
 import { Feather } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
@@ -38,11 +38,9 @@ function NativeTabLayout() {
 function ClassicTabLayout() {
   const colors = useColors();
   const colorScheme = useColorScheme();
-  const { width } = useWindowDimensions();
   const isDark = colorScheme === 'dark';
   const isIOS = Platform.OS === 'ios';
   const isWeb = Platform.OS === 'web';
-  const isDesktopWeb = isWeb && width >= 900;
 
   return (
     <Tabs
@@ -51,20 +49,13 @@ function ClassicTabLayout() {
         tabBarInactiveTintColor: colors.mutedForeground,
         headerShown: false,
         tabBarStyle: {
-          position: isDesktopWeb ? 'absolute' : 'absolute',
-          top: isDesktopWeb ? 0 : undefined,
-          bottom: isDesktopWeb ? undefined : 0,
-          backgroundColor: isDesktopWeb ? '#0C0C0C' : isIOS ? 'transparent' : colors.background,
-          borderTopWidth: isDesktopWeb ? 0 : isWeb ? 1 : 0,
-          borderBottomWidth: isDesktopWeb ? 3 : 0,
+          position: 'absolute',
+          backgroundColor: isIOS ? 'transparent' : colors.background,
+          borderTopWidth: isWeb ? 1 : 0,
           borderTopColor: colors.border,
-          borderBottomColor: '#0C0C0C',
           elevation: 0,
-          ...(isDesktopWeb ? { height: 58 } : isWeb ? { height: 84 } : {}),
+          ...(isWeb ? { height: 84 } : {}),
         },
-        tabBarItemStyle: isDesktopWeb ? { borderRightWidth: 1, borderRightColor: '#232323' } : undefined,
-        tabBarActiveBackgroundColor: isDesktopWeb ? '#C94A00' : undefined,
-        tabBarLabelStyle: isDesktopWeb ? { fontFamily: 'monospace', fontSize: 11, letterSpacing: 1, textTransform: 'uppercase' } : undefined,
         tabBarBackground: () =>
           isIOS ? (
             <BlurView
@@ -73,10 +64,10 @@ function ClassicTabLayout() {
               style={StyleSheet.absoluteFill}
             />
           ) : isWeb ? (
-              <View
+            <View
               style={[
                 StyleSheet.absoluteFill,
-                  { backgroundColor: isDesktopWeb ? '#0C0C0C' : colors.background },
+                { backgroundColor: colors.background },
               ]}
             />
           ) : null,
