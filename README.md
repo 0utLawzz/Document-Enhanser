@@ -1,41 +1,41 @@
-# Document Enhancer
+<div align="center">
 
-Welcome to Document Enhancer! This is a monorepo containing a web interface and an API server for enhancing and processing documents.
+# Document Enhancer — Workspace
 
-## Project Structure
+**A collection of tools for enhancing scanned documents and images, running entirely client-side.**
 
-This is a monorepo managed with `pnpm`:
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-- `artifacts/docbright-web`: The front-end application built with React, Vite, and Tailwind CSS.
-- `artifacts/api-server`: The backend API server (if applicable).
-- `artifacts/docbright`: Shared utilities or core logic.
+</div>
 
-## Prerequisites
+---
 
-- Node.js (v18+ recommended)
-- `pnpm` (v8+ recommended)
+## 📦 Projects
 
-## Installation
+### [`docbright-web/`](docbright-web/)
+
+A **privacy-first browser document enhancer** built with Vite + React 19 + TypeScript.
+
+- 🔒 100% local — no uploads, no server, no cloud
+- 🖼️ 6 enhancement presets (Print Ready, B&W, Photo Recovery, and more)
+- 📦 Batch processing + ZIP export
+- 🎨 Dark neon UI with glass panels and micro-animations
+
+**→ [See the full README](docbright-web/README.md)**
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-# Install dependencies for the workspace
-pnpm install
+cd docbright-web
+npm install
+npm run dev
+# → http://localhost:5173
 ```
 
-## Running the Application
+---
 
-To run the web interface locally:
+## 📄 License
 
-```bash
-cd artifacts/docbright-web
-pnpm run dev
-```
-Then, open your browser and navigate to the URL provided by Vite.
-
-## Contributing
-
-Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## License
-
-This project is licensed under the MIT License.
+MIT — see [LICENSE](LICENSE)
