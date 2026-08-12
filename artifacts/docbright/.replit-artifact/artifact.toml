@@ -1,5 +1,5 @@
 kind = "mobile"
-previewPath = "/"
+previewPath = "/mobile/"
 title = "DocBright"
 description = "A privacy-first mobile document photo enhancer for improving dull, shadowed, or low-contrast legal and official documents while preserving original pixels and document content. Supports camera capture, gallery import, conservative print-ready enhancement, before/after review, batch processing, history, and export."
 version = "1.0.0"
@@ -9,7 +9,7 @@ router = "expo-domain"
 [[services]]
 name = "expo"
 ensurePreviewReachable = "/status"
-paths = [ "/" ]
+paths = [ "/mobile/" ]
 localPort = 18995
 
 [services.development]
@@ -21,4 +21,4 @@ run = [ "pnpm", "--filter", "@workspace/docbright", "run", "serve" ]
 
 [services.env]
 PORT = "18995"
-BASE_PATH = "/"
+BASE_PATH = "/mobile/"

@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "DocBright Desktop"
+description = "A desktop-first document photo enhancer for uploading one or many document images, improving readability locally in the browser, comparing original and enhanced results, clearing the queue, and downloading individual JPGs or a ZIP archive."
+version = "1.0.0"
+id = "artifacts/docbright-web"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24060
+
+[services.development]
+run = "pnpm --filter @workspace/docbright-web run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/docbright-web", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/docbright-web/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24060"
+BASE_PATH = "/"

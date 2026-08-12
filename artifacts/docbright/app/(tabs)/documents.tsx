@@ -14,7 +14,7 @@ export default function DocumentsScreen() {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const { documents, addAssets, enhanceAll, shareAll } = useDocuments();
+  const { documents, addAssets, enhanceAll, shareAll, clearHistory } = useDocuments();
   const [selectedPreset, setSelectedPreset] = useState<Preset>('Print Ready');
   const topInset = Platform.OS === 'web' ? 67 : insets.top;
   const processing = documents.filter((item) => item.status === 'processing').length;
@@ -30,6 +30,17 @@ export default function DocumentsScreen() {
     Alert.alert('Enhancement started', `Applying ${selectedPreset} to your documents.`);
   };
 
+  const clearAll = () => {
+    Alert.alert(
+      'Clear all uploaded files?',
+      'This removes the current queue and saved DocBright history. Original photos on your device are not affected.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Clear all', style: 'destructive', onPress: clearHistory },
+      ],
+    );
+  };
+
   return <View style={[styles.screen, { backgroundColor: colors.background }]}>
     <ScrollView contentContainerStyle={[styles.content, { paddingTop: topInset + 16, paddingBottom: insets.bottom + 100 }]} showsVerticalScrollIndicator={false}>
       <AppHeader eyebrow="Workspace" title="Documents" action="plus" onAction={chooseMore} />
@@ -41,6 +52,7 @@ export default function DocumentsScreen() {
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.presetRow}>{presets.map((preset) => <PresetChip key={preset} preset={preset} selected={selectedPreset === preset} onPress={() => setSelectedPreset(preset)} />)}</ScrollView>
           <PrimaryButton icon="zap" onPress={applyAll} disabled={processing > 0} style={styles.batchButton}>Apply to All</PrimaryButton>
           <PrimaryButton icon="download" onPress={shareAll} secondary disabled={!completed} style={styles.batchButton}>Export All</PrimaryButton>
+           <Pressable onPress={clearAll} style={({ pressed }) => [styles.clearButton, { borderColor: colors.destructive, opacity: pressed ? 0.6 : 1 }]}><Feather name="trash-2" size={16} color={colors.destructive} /><Text style={[styles.clearText, { color: colors.destructive }]}>Clear all uploaded files</Text></Pressable>
         </View>
         <SectionLabel action="Add more" onAction={chooseMore}>Queue</SectionLabel>
         {documents.map((document) => <QueueRow key={document.id} document={document} onPress={() => router.push(`/editor/${document.id}`)} />)}
@@ -66,5 +78,7 @@ const styles = StyleSheet.create({
   progressFill: { height: '100%', borderRadius: 4 },
   presetRow: { paddingBottom: 15 },
   batchButton: { minHeight: 48 },
+  clearButton: { minHeight: 44, borderWidth: 1, borderRadius: 14, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, marginTop: 10 },
+  clearText: { fontSize: 12, fontWeight: '700' },
   addButton: { marginTop: 20 },
 });
