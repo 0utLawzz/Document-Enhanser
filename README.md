@@ -1,16 +1,16 @@
-<div align="center">
+# Document Enhancer
 
-# Document Enhancer — Workspace
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![Automation](https://img.shields.io/badge/Automation-Custom-blue)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
-**A collection of tools for enhancing scanned documents and images, running entirely client-side.**
+> A collection of tools for enhancing scanned documents and images, running entirely client-side. Privacy-first browser document enhancer.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+## Topics / Keywords
+`document-enhancer` `camscanner` `photo-editing` `ocr` `image-enhancement` `typescript` `react` `vite` `automation` `custom-automation`
 
-</div>
-
----
-
-## 📦 Projects
+## Projects
 
 ### [`docbright-web/`](docbright-web/)
 
@@ -23,9 +23,7 @@ A **privacy-first browser document enhancer** built with Vite + React 19 + TypeS
 
 **→ [See the full README](docbright-web/README.md)**
 
----
-
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 cd docbright-web
@@ -34,8 +32,17 @@ npm run dev
 # → http://localhost:5173
 ```
 
+## Author
+**Nadeem (OutLawZ)**  
+Custom Automation Specialist  
+
+📧 Contact: [net2outlawzz@gmail.com](mailto:net2outlawzz@gmail.com)  
+🔗 GitHub: [0utLawzz](https://github.com/0utLawzz)
+
 ---
 
-## 📄 License
+*Need custom document enhancement or image automation? Contact me.*
+
+## License
 
 MIT — see [LICENSE](LICENSE)
